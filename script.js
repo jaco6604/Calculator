@@ -1,3 +1,6 @@
+let firstNumber;
+let operator;
+let secondNumber;
 function add(a, b){
     return a + b;
 }
@@ -15,6 +18,28 @@ function multiply(a, b){
 console.log(multiply(7, 2));
 
 function divide(a, b){
-    return a / b;
+    if(b === 0){
+        return NaN;
+    }else {
+        return a / b;
+    }
+    
 }
 console.log(divide(10, 2))
+
+function operate(){
+if(operator === "+"){
+    return add(firstNumber, secondNumber);
+}
+if(operator === "-"){
+    return subtract(firstNumber, secondNumber);
+}
+if(operator === "*"){
+    return multiply(firstNumber, secondNumber);
+}
+if(operator === "/"){
+    return divide(firstNumber, secondNumber);
+}else{
+    return NaN;
+}
+}
