@@ -39,9 +39,8 @@ if(operator === "*"){
 }
 if(operator === "/"){
     return divide(Number(firstNumber), Number(secondNumber));
-}else{
-    return NaN;
 }
+    return NaN;
 }
 
 const display = document.getElementById('display');
@@ -69,11 +68,26 @@ numberButtons.forEach(button => {
 operatorButtons.forEach(button => {
     button.addEventListener('click', () =>{
         operator = button.textContent;
+
     })
 });
 
 actionButtons.forEach(button => {
     button.addEventListener('click', () =>{
-        action = button.textContent;
+        if(button.textContent === "="){
+            const result = operate();
+            display.value = result;
+
+            firstNumber = result;
+            secondNumber = "";
+            operator = "";
+        }
+
+        if(button.textContent === "AC"){
+         firstNumber = "";
+         secondNumber = "";
+         operator="";
+         display.value="";   
+        }
     })
 });
