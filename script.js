@@ -1,6 +1,7 @@
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let justCalculated = false;
 function add(a, b){
     return a + b;
 }
@@ -19,7 +20,7 @@ console.log(multiply(7, 2));
 
 function divide(a, b){
     if(b === 0){
-        return NaN;
+        return "Nice try!";
     }else {
         return a / b;
     }
@@ -50,6 +51,11 @@ const actionButtons = document.querySelectorAll('.action');
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
+        if(justCalculated){
+            firstNumber="";
+            justCalculated = false;
+        }
+        
         if(!operator){
             firstNumber = firstNumber  + button.textContent;
             display.value = firstNumber;
@@ -75,12 +81,17 @@ operatorButtons.forEach(button => {
 actionButtons.forEach(button => {
     button.addEventListener('click', () =>{
         if(button.textContent === "="){
+            
+            if(!firstNumber || !secondNumber || !operator) return;
+            
             const result = operate();
             display.value = result;
 
             firstNumber = result;
             secondNumber = "";
             operator = "";
+
+            justCalculated = true;
         }
 
         if(button.textContent === "AC"){
