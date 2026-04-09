@@ -1,6 +1,6 @@
-let firstNumber;
-let operator;
-let secondNumber;
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
 function add(a, b){
     return a + b;
 }
@@ -29,16 +29,16 @@ console.log(divide(10, 2))
 
 function operate(){
 if(operator === "+"){
-    return add(firstNumber, secondNumber);
+    return add(Number(firstNumber), Number(secondNumber));
 }
 if(operator === "-"){
-    return subtract(firstNumber, secondNumber);
+    return subtract(Number(firstNumber), Number(secondNumber));
 }
 if(operator === "*"){
-    return multiply(firstNumber, secondNumber);
+    return multiply(Number(firstNumber), Number(secondNumber));
 }
 if(operator === "/"){
-    return divide(firstNumber, secondNumber);
+    return divide(Number(firstNumber), Number(secondNumber));
 }else{
     return NaN;
 }
@@ -46,16 +46,34 @@ if(operator === "/"){
 
 const display = document.getElementById('display');
 const numberButtons = document.querySelectorAll('.number');
+const operatorButtons = document.querySelectorAll('.operator');
+const actionButtons = document.querySelectorAll('.action');
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         if(!operator){
-            firstNumber = button.textContent;
+            firstNumber = firstNumber  + button.textContent;
             display.value = firstNumber;
-        } else {
-            secondNumber = button.textContent;
+
+        }
+        else {
+            secondNumber = secondNumber + button.textContent;
             display.value = secondNumber;
         }
         
+
+        
     });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () =>{
+        operator = button.textContent;
+    })
+});
+
+actionButtons.forEach(button => {
+    button.addEventListener('click', () =>{
+        action = button.textContent;
+    })
 });
