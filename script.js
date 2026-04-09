@@ -43,3 +43,19 @@ if(operator === "/"){
     return NaN;
 }
 }
+
+const display = document.getElementById('display');
+const numberButtons = document.querySelectorAll('.number');
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if(!operator){
+            firstNumber = button.textContent;
+            display.value = firstNumber;
+        } else {
+            secondNumber = button.textContent;
+            display.value = secondNumber;
+        }
+        
+    });
+});
